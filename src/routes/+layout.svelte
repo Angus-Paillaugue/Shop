@@ -9,6 +9,7 @@
     let cartProducts = [];
     let searchInput;
     let query;
+    let subtotal = 0
 
     $: if($searchBar && searchInput) searchInput.focus();
     $: if($searchBar) $cartAside = false
@@ -24,12 +25,15 @@
     })
 
     async function setCartItems(){
+        subtotal = 0;
         cartProducts = [];
         if($cart.length > 0){
-            $cart.forEach(async(item) => {
+            $cart.forEach(async(item, index) => {
                 const res = await fetch(`/api/product/${item.id}`, { method:"GET" });
                 const data = await res.json();
+                subtotal += (data.price * item.quantity * (data.promo ?? 1))/100;
                 cartProducts = [...cartProducts, {...data, size:item.size, quantity:item.quantity}];
+                if(index == $cart.length - 1) subtotal = parseFloat(subtotal.toFixed(2))
             });
         }
     }
@@ -64,11 +68,17 @@
     }
 </script>
 
+<svelte:head>
+    <meta name="description" content="Nude Project is a ready-to-wear label founded in 2018 in a small dorm room by two friends eager to create something different. Our garments aim to inspire the new generation to pursue their passion, whether or not it is the traditional path, by empowering artists to create without fear of judgement.">
+    <link rel="shortcut icon" href="https://nude-project.com/cdn/shop/files/NEW_BRAND_48x48.png" type="image/x-icon">
+    <meta property="og:type" content="website">
+</svelte:head>
+
 
 <!-- SearchBar -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-50 flex-col gap-2 items-start {$searchBar ? "opacity-100 z-40" : "opacity-0 -z-10"}" on:click={() => {$searchBar = false;}}>
+<div class="fixed top-0 left-0 w-full h-full bg-primary-500/50 flex-col gap-2 items-start {$searchBar ? "opacity-100 z-40" : "opacity-0 -z-10"}" on:click={() => {$searchBar = false;}}>
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <form action="/search" method="GET" class="w-full h-14 flex flex-row items-center transition-all {$searchBar ? "translate-y-0" : "-translate-y-full"}" on:click={(e) => {e.stopPropagation();}}>
         <label for="q" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -120,7 +130,7 @@
 
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div on:mouseenter={(() => {collectionsDropdown = true})} on:mouseleave={() => {collectionsDropdown = false}} class="p-2.5 flex items-center">
-            <button class="uppercase text-xs font-semibold">Collections</button>
+            <button class="uppercase text-xs">Collections</button>
             <div class="absolute left-0 bottom-0 translate-y-full bg-white shadow gap-6 w-full flex-row items-start p-8 {collectionsDropdown ? "flex" : "hidden"}">
                 <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
                     <a href="/collections/SUN-KISSED" class="link uppercase text-sm">Sun-kissed</a>
@@ -160,49 +170,61 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="bg-gray-600/50 fixed {navbar ? "top-10" : "top-0"} left-0 w-full h-full transition-all {$cartAside ? "opacity-100 z-20" : "opacity-0 -z-10"}" on:click={() => {$cartAside = false}}>
+<div class="bg-primary-500/50 fixed {navbar ? "top-10 h-[calc(100%-40px)]" : "top-0 h-full"} left-0 w-full transition-all {$cartAside ? "opacity-100 z-20" : "opacity-0 -z-10"}" on:click={() => {$cartAside = false}}>
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <aside class="absolute top-0 z-30 right-0 h-screen w-full sm:w-80 bg-white transition-all p-2 flex flex-col gap-2 sm:border-l sm:border-primary-500 {$cartAside ? "translate-x-0" : "translate-x-full"}" on:click={(e) => {e.stopPropagation()}}>
-        <div class="flex flex-row justify-between">
-            <button on:click={() =>{$cartAside = false}} class="group">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:rotate-90 transition-all"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-            <p class="uppercase font-extrabold">Cart</p>
-        </div>
-        {#if cartProducts.length > 0}
-            {#each cartProducts as product}
-                <div class="flex flex-row gap-4 h-44 border border-border w-full">
-                    <a href="/product/{product.id}" on:click={() =>{$cartAside = false}}>
-                        <img src="{product.images[0]}" alt="" class="w-auto h-full">
-                    </a>
-                    <div class="flex flex-col justify-between py-2">
-                        <div>
-                            <p class="font-extrabold">{product.name} ({product.size.toUpperCase()})</p>
-                            {#if product.promo}
-                                <span>
-                                    <span class="line-through">€ {(product.price/100).toFixed(2)}</span>
-                                    <span class="text-red-600">- {(1- product.promo).toFixed(2)*100}%</span>
-                                </span><br>
-                                <span>€ {(product.price/100*product.promo).toFixed(2)}</span>
-                            {:else}
-                                <span>€ {(product.price/100).toFixed(2)}</span>
-                            {/if}
-                        </div>
-                        <div class="flex flex-row gap-2">
-                            <button class="w-6 h-6 rounded-full flex justify-center items-center bg-gray-300" on:click={() => {quantityMinus(product)}}>-</button>
-                            <span>{product.quantity}</span>
-                            <button class="w-6 h-6 rounded-full flex justify-center items-center bg-gray-300" on:click={() => {quantityPlus(product)}}>+</button>
+    <aside class="absolute top-0 z-30 right-0 h-full w-full sm:w-[500px] bg-white transition-all p-2 flex flex-col justify-between gap-2 sm:border-l sm:border-primary-500 {$cartAside ? "translate-x-0" : "translate-x-full"}" on:click={(e) => {e.stopPropagation()}}>
+        <div class="flex flex-col gap-2">
+            <div class="flex flex-row justify-between">
+                <button on:click={() =>{$cartAside = false}} class="group">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:rotate-90 transition-all"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+                <p class="uppercase font-extrabold">Cart</p>
+            </div>
+            {#if cartProducts.length > 0}
+                {#each cartProducts as product}
+                    <div class="flex flex-row gap-4 h-44 border border-border w-full">
+                        <a href="/product/{product.id}" on:click={() =>{$cartAside = false}}>
+                            <img src="{product.images[0]}" alt="" class="w-auto h-full">
+                        </a>
+                        <div class="flex flex-col justify-between py-2">
+                            <div>
+                                <p class="font-extrabold">{product.name} ({product.size.toUpperCase()})</p>
+                                {#if product.promo}
+                                    <span>
+                                        <span class="line-through">€ {(product.price/100).toFixed(2)}</span>
+                                        <span class="text-red-600">- {(1- product.promo).toFixed(2)*100}%</span>
+                                    </span><br>
+                                    <span class="font-bold">€ {(product.price/100*product.promo).toFixed(2)}</span>
+                                {:else}
+                                    <span class="font-bold">€ {(product.price/100).toFixed(2)}</span>
+                                {/if}
+                            </div>
+                            <div class="flex flex-row gap-2">
+                                <button class="w-6 h-6 rounded-full flex justify-center items-center bg-primary-100" on:click={() => {quantityMinus(product)}}>-</button>
+                                <span>{product.quantity}</span>
+                                <button class="w-6 h-6 rounded-full flex justify-center items-center bg-primary-100" on:click={() => {quantityPlus(product)}}>+</button>
+                            </div>
                         </div>
                     </div>
+                {/each}
+            {:else}
+                <div class="m-auto text-center">
+                    <h4>Your cart is empty!</h4>
+                    <a href="/category/*" class="link">Start shopping</a>
                 </div>
-            {/each}
-            <button class="button-primary">Proceed to checkout</button>
-        {:else}
-            <div class="m-auto text-center">
-                <h4>Your cart is empty!</h4>
-                <a href="/category/*" class="link">Start shopping</a>
+            {/if}
+        </div>
+        <div class="flex flex-col gap-1">
+            <div class="flex flex-row justify-between">
+                <p class="uppercase text-xs">Cart</p>
+                <p class="uppercase text-xs">Subtotal</p>
             </div>
-        {/if}
+            <div class="flex flex-row justify-between">
+                <p>{$cart.reduce((partialSum, a) => partialSum + a.quantity, 0)} item{$cart.reduce((partialSum, a) => partialSum + a.quantity, 0) > 1 ?"s" : ""}</p>
+                <p class="font-bold">€ {subtotal.toFixed(2)}</p>
+            </div>
+            <button class="button-primary">Proceed to checkout</button>
+        </div>
     </aside>
 </div>
 

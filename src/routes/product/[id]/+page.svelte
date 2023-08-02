@@ -7,8 +7,10 @@
     export let data;
 
     const { product, othersColors, recommandedProducts } = data;
+    let productsPerPage = 4;
+    let shippingCollapsible = false;
+    let detailsCollapsible = false;
     let selectedSize;
-    let productsPerPage = 4
 
     onMount(() => {
         setSplideSize();
@@ -53,7 +55,17 @@
         </div>
         <div class="flex flex-col lg:max-w-lg w-full h-fit sticky top-0">
             <p class="font-extrabold">{product.name}</p>
-            <p class="font-semibold">€ {(product.price/100).toFixed(2)}</p>
+            {#if product.promo}
+                <div>
+                    <span>
+                        <span class="line-through">€ {(product.price/100).toFixed(2)}</span>
+                        <span class="text-red-600">- {(1- product.promo).toFixed(2)*100}%</span>
+                    </span><br>
+                    <span class="font-bold">€ {(product.price/100*product.promo).toFixed(2)}</span>
+                </div>
+            {:else}
+                <span class="font-bold">€ {(product.price/100).toFixed(2)}</span>
+            {/if}
             <p class="font-semibold text-sm mt-10">{@html product.description.replaceAll("\n", "<br />")}</p>
 
             {#if othersColors.length > 0}
@@ -85,6 +97,30 @@
             </div>
 
             <button class="button-primary uppercase" disabled="{!selectedSize}" on:click={addToCart}>Add to cart</button>
+
+            <div class="flex flex-col justify-between mt-10">
+                {#if product.details}
+                    <button class="w-full border-t border-border uppercase flex justify-between items-center flex-row py-6 px-2" on:click={() => {detailsCollapsible = !detailsCollapsible}}>
+                        Details
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                    </button>
+                    <ul class="w-full break-words border-b border-border transition-all overflow-hidden list-disc list-inside text-sm space-y-3 pl-4 {detailsCollapsible ? "max-h-96 py-4" : "max-h-0"}">
+                        {#each product.details as detail}
+                            <li>{detail}</li>
+                        {/each}
+                    </ul>
+                {/if}
+                <button class="w-full uppercase flex justify-between items-center flex-row py-6 px-2 {product.details ? "" : "border-t border-border"}" on:click={() => {shippingCollapsible = !shippingCollapsible}}>
+                    Shipping
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                </button>
+                <div class="w-full break-words border-b border-border transition-all overflow-hidden list-disc list-inside text-sm space-y-3 pl-4 {shippingCollapsible ? "max-h-96 py-4" : "max-h-0"}">
+                    <p>Due to logistical improvements, orders may take longer than usual.</p><br>
+                    <p>- National orders 7-8 working days, approximately.</p><br>
+                    <p>- International orders 12-14 working days approximately.</p><br>
+                    <p>If you have any issues with your order email us at help@nude-project.com and we will be there to help you. Please note, orders placed after 2PM (CET) will be shipped the following business day. </p>
+                </div>
+            </div>
         </div>
     </div>
 

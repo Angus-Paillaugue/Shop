@@ -24,7 +24,15 @@
         {/each}
     </div>
     <p class="font-extrabold">{product.name}</p>
-    <span>€ {(product.price/100).toFixed(2)}</span>
+    {#if product.promo}
+        <div class="flex flex-row">
+            <span class="line-through">€ {(product.price/100).toFixed(2)}</span>
+            <span class="text-red-600">- {(1- product.promo).toFixed(2)*100}%</span>
+            <span class="font-bold ml-2">€ {(product.price/100*product.promo).toFixed(2)}</span>
+        </div>
+    {:else}
+        <span class="font-bold">€ {(product.price/100).toFixed(2)}</span>
+    {/if}
     <div class="flex flex-row gap-2 flex-nowrap overflow-x-auto">
         <div class="rounded-full h-5 w-5 border-primary-500 border-2" style="background-color: {product.colorHex};"></div>
         {#each product.colors as color}

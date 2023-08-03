@@ -59,7 +59,7 @@
                 <div>
                     <span>
                         <span class="line-through">€ {(product.price/100).toFixed(2)}</span>
-                        <span class="text-red-600">- {(1- product.promo).toFixed(2)*100}%</span>
+                        <span class="text-red-500">- {(1- product.promo).toFixed(2)*100}%</span>
                     </span><br>
                     <span class="font-bold">€ {(product.price/100*product.promo).toFixed(2)}</span>
                 </div>

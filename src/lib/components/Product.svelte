@@ -27,7 +27,7 @@
     {#if product.promo}
         <div class="flex flex-row">
             <span class="line-through">€ {(product.price/100).toFixed(2)}</span>
-            <span class="text-red-600">- {(1- product.promo).toFixed(2)*100}%</span>
+            <span class="text-red-500">- {(1- product.promo).toFixed(2)*100}%</span>
             <span class="font-bold ml-2">€ {(product.price/100*product.promo).toFixed(2)}</span>
         </div>
     {:else}

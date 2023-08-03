@@ -8,5 +8,6 @@ const database = client.db('Shop');
 
 const usersRef = database.collection("users");
 const productsRef = database.collection("products");
+const couponsRef = database.collection("coupons");
 
-export { usersRef, productsRef }
+export { usersRef, productsRef, couponsRef }

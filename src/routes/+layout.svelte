@@ -3,17 +3,23 @@
     import { cart, searchBar, cartAside, navbar } from "$lib/stores";
     import { onMount } from "svelte";
 
+    export let data
+
     let categoriesDropdown = false;
     let collectionsDropdown = false;
     let cookieModal = false;
+    let smallNavBar = false;
     let cartProducts = [];
+    let subtotal = 0;
     let searchInput;
     let query;
-    let subtotal = 0
 
     $: if($searchBar && searchInput) searchInput.focus();
-    $: if($searchBar) $cartAside = false
-    $: $cart, setCartItems()
+    $: if($searchBar) $cartAside = false;
+    $: if($cartAside) smallNavBar = false;
+    $: $cart, setCartItems();
+    $: $navbar = !!data.pathname;
+
 
     onMount(() => {
         var prevScrollpos = window.scrollY;
@@ -118,11 +124,10 @@
 <!-- Navbar -->
 
 <nav class="fixed top-0 left-0 w-full h-10 bg-white border-b border-primary-500 flex flex-row justify-between z-30 px-2 transition-all {$navbar ? "translate-y-0" : "-translate-y-full"} {$searchBar && $navbar ? "mt-[56px]" : ""}">
-    <div class="flex flex-row gap-2 items-center flex-1">
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div on:mouseenter={(() => {categoriesDropdown = true})} on:mouseleave={() => {categoriesDropdown = false}} class="flex items-center">
-            <button class="uppercase text-xs font-semibold">Shop</button>
-            <div class="absolute left-0 bottom-0 translate-y-full bg-white shadow gap-6 w-full flex-row items-start p-8 {categoriesDropdown ? "flex" : "hidden"}">
+    <button class="max-md:block hidden flex-1" on:click={() => {smallNavBar = !smallNavBar}}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+        <div class="flex flex-col bg-white shadow gap-6 absolute left-0 bottom-0 translate-y-full w-full {smallNavBar ? "flex" : "hidden"}">
+            <div class="w-full flex-row items-start px-8 pt-4 gap-6 flex">
                 <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
                     <p class="uppercase font-extrabold text-sm">Clothing</p>
                     <a href="/category/clothing" class="link uppercase text-sm">All</a>
@@ -135,7 +140,56 @@
                     <a href="/category/underwear" class="link uppercase text-sm">Underwear</a>
                     <a href="/category/outerwear" class="link uppercase text-sm">Outerwear</a>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col items-start">
+                    <p class="uppercase font-extrabold text-sm">Accessories</p>
+                    <a href="/category/accessories" class="link uppercase text-sm">All</a>
+                    <a href="/category/headwear" class="link uppercase text-sm">Headwear</a>
+                    <a href="/category/jewelry" class="link uppercase text-sm">Jewelry</a>
+                    <a href="/category/objects" class="link uppercase text-sm">Objects</a>
+                    <a href="/category/socks" class="link uppercase text-sm">Socks</a>
+                    <a href="/category/bags" class="link uppercase text-sm">Bags</a>
+                </div>
+            </div>
+            <div class="flex-col flex items-start px-8 pb-4">
+                <p class="uppercase font-extrabold text-sm">Collections</p>
+                <div class="gap-6 w-full flex-row items-start flex">
+                    <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
+                        <a href="/collections/SUN-KISSED" class="link uppercase text-sm">Sun-kissed</a>
+                        <a href="/collections/SUMMER TAPES" class="link uppercase text-sm">Summer tapes</a>
+                        <a href="/collections/SALAO" class="link uppercase text-sm">Salao</a>
+                        <a href="/collections/TRUENO X NUDE PROJECT" class="link uppercase text-sm">Trueno x nude project</a>
+                        <a href="/collections/CHAMPAGNE PROBLEMS" class="link uppercase text-sm">Champagne problems</a>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <a href="/collections/SCOUTS" class="link uppercase text-sm">Scouts</a>
+                        <a href="/collections/DA'CAR" class="link uppercase text-sm">Da'car</a>
+                        <a href="/collections/HEAVER OR HELL" class="link uppercase text-sm">Heaven or hell</a>
+                        <a href="/collections/HEAD IN THE CLOUDS" class="link uppercase text-sm">Head in the clouds</a>
+                        <a href="/collections/TRENDSETTER COLLECTION" class="link uppercase text-sm">Trendsetter collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </button>
+
+    <div class="md:flex hidden flex-row gap-6 items-center flex-1">
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <div on:mouseenter={(() => {categoriesDropdown = true})} on:mouseleave={() => {categoriesDropdown = false}} class="py-2.5 flex items-center">
+            <button class="uppercase text-xs font-semibold">Shop</button>
+            <div class="absolute left-0 bottom-0 translate-y-[calc(100%-10px)] bg-white shadow gap-6 w-full flex-row items-start p-8 {categoriesDropdown ? "flex" : "hidden"}">
+                <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
+                    <p class="uppercase font-extrabold text-sm">Clothing</p>
+                    <a href="/category/clothing" class="link uppercase text-sm">All</a>
+                    <a href="/category/t-shirt" class="link uppercase text-sm">T-shirts</a>
+                    <a href="/category/hoodies&sweaters" class="link uppercase text-sm">Hoodies & sweaters</a>
+                    <a href="/category/bottoms" class="link uppercase text-sm">Bottoms</a>
+                    <a href="/category/swimwear" class="link uppercase text-sm">Swimwear</a>
+                    <a href="/category/knitwear" class="link uppercase text-sm">Knitwear</a>
+                    <a href="/category/shirts&polos" class="link uppercase text-sm">Shirts & Polos</a>
+                    <a href="/category/underwear" class="link uppercase text-sm">Underwear</a>
+                    <a href="/category/outerwear" class="link uppercase text-sm">Outerwear</a>
+                </div>
+                <div class="flex flex-col items-start">
                     <p class="uppercase font-extrabold text-sm">Accessories</p>
                     <a href="/category/accessories" class="link uppercase text-sm">All</a>
                     <a href="/category/headwear" class="link uppercase text-sm">Headwear</a>
@@ -148,9 +202,9 @@
         </div>
 
         <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div on:mouseenter={(() => {collectionsDropdown = true})} on:mouseleave={() => {collectionsDropdown = false}} class="p-2.5 flex items-center">
+        <div on:mouseenter={(() => {collectionsDropdown = true})} on:mouseleave={() => {collectionsDropdown = false}} class="py-2.5 flex items-center">
             <button class="uppercase text-xs">Collections</button>
-            <div class="absolute left-0 bottom-0 translate-y-full bg-white shadow gap-6 w-full flex-row items-start p-8 {collectionsDropdown ? "flex" : "hidden"}">
+            <div class="absolute left-0 bottom-0 translate-y-[calc(100%-10px)] bg-white shadow gap-6 w-full flex-row items-start p-8 {collectionsDropdown ? "flex" : "hidden"}">
                 <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
                     <a href="/collections/SUN-KISSED" class="link uppercase text-sm">Sun-kissed</a>
                     <a href="/collections/SUMMER TAPES" class="link uppercase text-sm">Summer tapes</a>
@@ -191,7 +245,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div class="bg-primary-500/50 fixed {navbar ? "top-10 h-[calc(100%-40px)]" : "top-0 h-full"} left-0 w-full transition-all {$cartAside ? "opacity-100 z-20" : "opacity-0 -z-10"}" on:click={() => {$cartAside = false}}>
+<div class="bg-primary-500/50 fixed {$navbar ? "top-10 h-[calc(100%-40px)]" : "top-0 h-full"} left-0 w-full transition-all {$cartAside ? "opacity-100 z-20" : "opacity-0 -z-10"}" on:click={() => {$cartAside = false}}>
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <aside class="absolute top-0 z-30 right-0 h-full w-full sm:w-[500px] bg-white transition-all p-2 flex flex-col justify-between gap-2 sm:border-l sm:border-primary-500 {$cartAside ? "translate-x-0" : "translate-x-full"}" on:click={(e) => {e.stopPropagation()}}>
         {#if cartProducts.length > 0}

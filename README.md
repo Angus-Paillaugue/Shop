@@ -1,9 +1,10 @@
 
 # TODO:
 
- - [ ] Add breadcrumb navigation
+ - [ ] *Add breadcrumb navigation
  - [ ] Make the navbar responsive
- - [ ] Make coupon codes work in checkout
- - [ ] Finish the checkout page
- - [ ] Make a order tracking page
+ - [x] Make coupon codes work in checkout
+ - [x] Finish the checkout page
+ - [x] Make a order tracking page
  - [ ] Send a mail withe the tracking page url to confirm order
+ - [ ] Make the tracking page

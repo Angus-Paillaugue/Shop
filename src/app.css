@@ -19,7 +19,7 @@
 }
 
 ::selection {
-  @apply text-neutral-100 bg-primary-600
+  @apply text-primary-100 bg-primary-600
 }
 
 * {
@@ -73,5 +73,5 @@ p {
 }
 
 input[type=text] {
-  @apply w-full h-14 transition-all rounded block p-4 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-primary-500 focus:border-primary-500
+  @apply w-full h-12 transition-all rounded block p-4 text-sm text-gray-900 border border-gray-300 bg-white focus:ring-primary-500 focus:border-primary-500
 }

@@ -21,6 +21,7 @@
 		"@floating-ui/dom": "^1.4.5",
 		"@splidejs/splide": "^4.1.4",
 		"@splidejs/svelte-splide": "^0.2.9",
+		"@sveltejs/adapter-vercel": "^3.0.3",
 		"bcrypt": "^5.1.0",
 		"emailjs": "^4.0.2",
 		"flowbite": "^1.7.0",

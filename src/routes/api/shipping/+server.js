@@ -35,7 +35,7 @@ export async function POST({ request }) {
 
         let htmlEmail = emailTemplate;
         let replaceArray = ["prenom", "orderNo", "total", "trackingUrl",'adresse', "websiteUrl", "subtotal", "nom"];
-        let replaceWith = [prenom, orderNo, total, `http://localhost:5173/tracking/${orderNo}`, adresse, "http://localhost:5173", subtotal, nom];
+        let replaceWith = [prenom, orderNo, total, `http://shop.hellkeeper.fr/tracking/${orderNo}`, adresse, "http://shop.hellkeeper.fr", subtotal, nom];
         for(var i = 0; i < replaceArray.length; i++) {
             htmlEmail = htmlEmail.replace(new RegExp('{{' + replaceArray[i] + '}}', 'gi'), replaceWith[i]);
         }

@@ -1,3 +1,10 @@
+<script>
+    import { pageMetaData } from "$lib/stores"
+
+    $pageMetaData.title = ` ABOUT US – NUDE PROJECT `;
+    $pageMetaData.description = "NUDE PROJECT is a ready-to-wear label founded in 2018 in a small dorm room by two friends eager to create something different. Bruno and Alex were raised in completely different environments. One from Bali, the other from Burgos (a little more north) had an instant connection that, after a month of knowing each other, led them to create a joint movement that would change their lives forever."
+</script>
+
 <div class="w-full p-6 space-y-20 max-w-screen-2xl mx-auto">
     <h5 class="mx-auto uppercase w-fit">About us</h5>
 

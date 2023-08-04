@@ -1,9 +1,13 @@
 <script>
     import Product from "$lib/components/Product.svelte"
+    import { pageMetaData } from "$lib/stores"
 
     export let data;
 
-    const { products } = data;
+    const { products, categoryName } = data;
+
+    $pageMetaData.title = ` ${categoryName} – NUDE PROJECT `;
+    $pageMetaData.description = `Simplicity, comfort and unique design. Your outfits say a lot about you and Nude Project ${categoryName} say even more.`;
 </script>
 
 {#if products.length > 0}

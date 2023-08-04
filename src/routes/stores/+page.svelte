@@ -1,6 +1,10 @@
 <script>
     import { Splide, SplideSlide } from '@splidejs/svelte-splide';
     import '@splidejs/svelte-splide/css';
+    import { pageMetaData } from "$lib/stores"
+
+    $pageMetaData.title = ` STORES – NUDE PROJECT `;
+    $pageMetaData.description = "Our stores"
 </script>
 
 <div class="w-full p-6 space-y-20 max-w-screen-2xl mx-auto">

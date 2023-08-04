@@ -1,3 +1,10 @@
+<script>
+    import { pageMetaData } from "$lib/stores"
+
+    $pageMetaData.title = ` LEGAL NOTICE – NUDE PROJECT `;
+    $pageMetaData.description = `INTRODUCTION Pursuant to Law 34/2002, of 11 July, concerning Information Society and Electronic Commerce Services (LSSI-CE), NUDE PROJECT SL informs you that it is the owner of the website. As required by Article 10 of this Law, NUDE PROJECT SL provides the following information: NUDE PROJECT SLTAX IDENTIFICATION NUMBE`;
+</script>
+
 <div class="max-w-screen-md mx-auto flex flex-col gap-6 py-8">
     <h5 class="w-fit mx-auto">LEGAL NOTICE</h5>
 

@@ -6,3 +6,4 @@ export const cart = persisted('cart', [])
 export const searchBar = writable(false);
 export const cartAside = writable(false);
 export const navbar = writable(false);
+export const pageMetaData = writable({ title:"", description:"" });

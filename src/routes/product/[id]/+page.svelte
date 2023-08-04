@@ -2,7 +2,7 @@
     import { Splide, SplideSlide } from '@splidejs/svelte-splide';
     import '@splidejs/svelte-splide/css';
     import { onMount } from 'svelte';
-    import { cart, cartAside, navbar } from "$lib/stores"
+    import { cart, cartAside, pageMetaData } from "$lib/stores"
 
     export let data;
 
@@ -34,6 +34,9 @@
         }
         $cartAside = true;
     }
+
+    $pageMetaData.title = ` ${product.name} – NUDE PROJECT `;
+    $pageMetaData.description = product.description.replaceAll("\n", " ");
 </script>
 
 <div class="flex flex-col p-4">

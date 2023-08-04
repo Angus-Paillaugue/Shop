@@ -1,6 +1,6 @@
 <script>
     import "../app.css";
-    import { cart, searchBar, cartAside, navbar } from "$lib/stores";
+    import { cart, searchBar, cartAside, navbar, pageMetaData } from "$lib/stores";
     import { onMount } from "svelte";
 
     export let data
@@ -78,9 +78,10 @@
 </script>
 
 <svelte:head>
-    <meta name="description" content="Nude Project is a ready-to-wear label founded in 2018 in a small dorm room by two friends eager to create something different. Our garments aim to inspire the new generation to pursue their passion, whether or not it is the traditional path, by empowering artists to create without fear of judgement.">
     <link rel="shortcut icon" href="https://nude-project.com/cdn/shop/files/NEW_BRAND_48x48.png" type="image/x-icon">
     <meta property="og:type" content="website">
+    <title> {$pageMetaData.title} </title>
+    <meta name="description" content="{$pageMetaData.description}">
 </svelte:head>
 
 {#if disclaimerModal}

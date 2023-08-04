@@ -16,5 +16,5 @@ export async function load({ params }) {
         return product;
     }))).filter(n => n);
 
-    return { products };
+    return { products, categoryName:name };
 };

@@ -1,3 +1,10 @@
+<script>
+    import { pageMetaData } from "$lib/stores"
+
+    $pageMetaData.title = ` PRIVACY POLICY – NUDE PROJECT `;
+    $pageMetaData.description = `Data of the website's owner: NUDE PROJECT SLB01945328ADDRESS: C/PUJADES 81, 08005 BARCELONA, SPAIN (RETURNS SENT TO THIS ADDRESS WON'T BE ACCEPTED) If you want to return a product check this link: https://nude-project.com/pages/returns-nude-projectE-MAIL: info@nude-project.comMAIN PURPOSE: Marketing of clothing and acc`;
+</script>
+
 <div class="p-6 space-y-4">
     <h1>Privacy Policy for Nude Project</h1>
 

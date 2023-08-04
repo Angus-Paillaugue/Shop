@@ -1,5 +1,5 @@
 <script>
-    import { cart, navbar } from "$lib/stores"
+    import { cart, navbar, pageMetaData } from "$lib/stores"
     import { enhance } from "$app/forms"
     import { goto } from "$app/navigation"
     import { browser } from '$app/environment'
@@ -49,6 +49,9 @@
             goto(shippingForm.url);
         }
     }
+
+    $pageMetaData.title = ` CHECKOUT – NUDE PROJECT `;
+    $pageMetaData.description = `Confirm your order and get it shipped right to your door.`;
 </script>
 
 <div class="flex flex-col-reverse max-md:justify-end md:flex-row w-full transition-all {$navbar ? "md:min-h-[calc(100vh-40px)]" : "md:min-h-screen"}">

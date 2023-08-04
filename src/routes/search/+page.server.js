@@ -12,5 +12,5 @@ export async function load({ url }) {
         return product; 
     }))).filter(n => n);
 
-    return { products };
+    return { products, searchQuery };
 };

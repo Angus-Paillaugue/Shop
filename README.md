@@ -8,4 +8,10 @@
  - [x] Make a order tracking page
  - [x] Send a mail withe the tracking page url to confirm order
  - [x] Put page metadata
- - [ ] Make the tracking page
+ - [x] Make the tracking page
+ - [ ] Build website on Vercel :
+    * move database to Mongodb cloud
+    * Create a new Vercel Project
+    * Link repo to vercel
+    * Build website
+    * Cross fingers that it deploys correctly

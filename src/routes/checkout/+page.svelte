@@ -104,15 +104,15 @@
                             <img src="{product.images[0]}" alt="" class="h-full">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <p class="text-white">{product.name}</p>
+                            <p class="text-primary-100">{product.name}</p>
                             <span class="text-primary-300">{product.size.toUpperCase()}</span>
                         </div>
                     </div>
                     <div class="flex flex-col w-4/6 items-end">
                         {#if product.promo}
-                            <span class="line-through text-white">€ {((product.price * product.quantity ?? 1)/100).toFixed(2)}</span>
+                            <span class="line-through text-primary-100">€ {((product.price * product.quantity ?? 1)/100).toFixed(2)}</span>
                             <span class="text-red-500">- {(1- product.promo).toFixed(2)*100}%</span>
-                            <span class="font-bold text-white">€ {((product.price * product.quantity ?? 1)/100*product.promo).toFixed(2)}</span>
+                            <span class="font-bold text-primary-100">€ {((product.price * product.quantity ?? 1)/100*product.promo).toFixed(2)}</span>
                         {:else}
                             <span class="font-bold">€ {((product.price * product.quantity ?? 1)/100).toFixed(2)}</span>
                         {/if}
@@ -132,28 +132,28 @@
             {/if}
             <hr>
             <div class="flex flex-row w-full justify-between">
-                <p class="text-white">Subtotal</p>
-                <span class="font-bold text-white">€ {subtotal}</span>
+                <p class="text-primary-100">Subtotal</p>
+                <span class="font-bold text-primary-100">€ {subtotal}</span>
             </div>
             {#if promoCodeReduction !== 1}
                 <div class="flex flex-row w-full justify-between">
-                    <p class="text-white">Promo code</p>
+                    <p class="text-primary-100">Promo code</p>
                     <span class="font-bold text-red-500">- €{subtotal * promoCodeReduction}</span>
                 </div>
             {/if}
             <div class="flex flex-row w-full justify-between">
-                <p class="text-white">Shipping</p>
-                <span class="font-bold text-white">€ 5.00</span>
+                <p class="text-primary-100">Shipping</p>
+                <span class="font-bold text-primary-100">€ 5.00</span>
             </div>
             <hr>
             <div class="flex flex-row w-full justify-between items-center">
                 <div class="flex flex-col">
-                    <p class="font-bold text-white">Total</p>
+                    <p class="font-bold text-primary-100">Total</p>
                     <span class="text-sm text-primary-300">Including €{(total*0.2).toFixed(2)} in taxes</span>
                 </div>
                 <div class="flex flex-row items-center gap-2">
                     <span class="uppercase text-primary-300 text-sm">eur</span>
-                    <p class="font-extrabold text-white text-lg">
+                    <p class="font-extrabold text-primary-100 text-lg">
                         € {total.toFixed(2)}
                     </p>
                 </div>

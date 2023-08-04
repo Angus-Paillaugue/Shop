@@ -128,7 +128,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
         <div class="flex flex-col bg-white shadow gap-6 absolute left-0 bottom-0 translate-y-full w-full {smallNavBar ? "flex" : "hidden"}">
             <div class="w-full flex-row items-start px-8 pt-4 gap-6 flex">
-                <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
+                <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start text-start">
                     <p class="uppercase font-extrabold text-sm">Clothing</p>
                     <a href="/category/clothing" class="link uppercase text-sm">All</a>
                     <a href="/category/t-shirt" class="link uppercase text-sm">T-shirts</a>
@@ -140,7 +140,7 @@
                     <a href="/category/underwear" class="link uppercase text-sm">Underwear</a>
                     <a href="/category/outerwear" class="link uppercase text-sm">Outerwear</a>
                 </div>
-                <div class="flex flex-col items-start">
+                <div class="flex flex-col items-start text-start">
                     <p class="uppercase font-extrabold text-sm">Accessories</p>
                     <a href="/category/accessories" class="link uppercase text-sm">All</a>
                     <a href="/category/headwear" class="link uppercase text-sm">Headwear</a>
@@ -152,7 +152,7 @@
             </div>
             <div class="flex-col flex items-start px-8 pb-4">
                 <p class="uppercase font-extrabold text-sm">Collections</p>
-                <div class="gap-6 w-full flex-row items-start flex">
+                <div class="gap-6 w-full flex-row items-start flex text-start">
                     <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
                         <a href="/collections/SUN-KISSED" class="link uppercase text-sm">Sun-kissed</a>
                         <a href="/collections/SUMMER TAPES" class="link uppercase text-sm">Summer tapes</a>
@@ -160,7 +160,7 @@
                         <a href="/collections/TRUENO X NUDE PROJECT" class="link uppercase text-sm">Trueno x nude project</a>
                         <a href="/collections/CHAMPAGNE PROBLEMS" class="link uppercase text-sm">Champagne problems</a>
                     </div>
-                    <div class="flex flex-col items-start">
+                    <div class="flex flex-col items-start text-start">
                         <a href="/collections/SCOUTS" class="link uppercase text-sm">Scouts</a>
                         <a href="/collections/DA'CAR" class="link uppercase text-sm">Da'car</a>
                         <a href="/collections/HEAVER OR HELL" class="link uppercase text-sm">Heaven or hell</a>

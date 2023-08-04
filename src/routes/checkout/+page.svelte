@@ -16,7 +16,7 @@
     
     $: (total = subtotal*promoCodeReduction+5)
     $: if(form?.isValid) {promoCodeReduction = form.data.reduction;promoCode = form?.code ?? "";}
-    $: $cart, setCartItems()
+    $: $cart, setCartItems();
 
     async function setCartItems(){
         subtotal = 0;
@@ -51,7 +51,7 @@
     }
 </script>
 
-<div class="flex flex-col-reverse max-md:justify-end md:flex-row w-full transition-all {$navbar ? "min-h-[calc(100vh-40px)]" : "min-h-screen"}">
+<div class="flex flex-col-reverse max-md:justify-end md:flex-row w-full transition-all {$navbar ? "md:min-h-[calc(100vh-40px)]" : "md:min-h-screen"}">
     <div class="p-4 md:w-1/2 w-full flex flex-col items-end">
         <div class="md:max-w-xl w-full flex flex-col">
             <form on:submit|preventDefault={(e) => {shipping(e)}} class="space-y-4">
@@ -91,7 +91,7 @@
             </form>
         </div>
     </div>
-    <div class="bg-primary-500 md:w-1/2 w-full transition-all  {$navbar ? "min-h-[calc(100vh-40px)]" : "min-h-screen"}">
+    <div class="bg-primary-500 md:w-1/2 w-full transition-all  {$navbar ? "md:min-h-[calc(100vh-40px)]" : "md:min-h-screen"}">
         <div class="md:p-6 p-2 flex flex-col gap-2 h-full w-full max-w-xl">
             {#each cartProducts as product}
                 <div class="flex flex-row h-28 items-center justify-between gap-4">

@@ -5,7 +5,7 @@
 
     const { order } = data;
 
-    $pageMetaData.title = ` Merci ${order.prenom} | By artists, for artists. `;
+    $pageMetaData.title = ` Thank you ${order.prenom} | By artists, for artists. `;
     $pageMetaData.description = "Nude Project is a ready-to-wear label founded in 2018 in a small dorm room by two friends eager to create something different. Our garments aim to inspire the new generation to pursue their passion, whether or not it is the traditional path, by empowering artists to create without fear of judgement.";
 </script>
 
@@ -19,7 +19,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width=".6" stroke="currentColor" class="w-20 h-20"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <div class="flex flex-col justify-between py-2">
                     <p>Order n° : <strong>{order.orderNo}</strong></p>
-                    <h1 class="font-normal">Merci, {order.prenom}</h1>
+                    <h1 class="font-normal">Thank you, {order.prenom}</h1>
                 </div>
             </div>
             <div class="pl-24">

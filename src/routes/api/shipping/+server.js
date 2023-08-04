@@ -1,4 +1,4 @@
-import { ordersRef } from "$lib/server/db"
+import { ordersRef, productsRef } from "$lib/server/db"
 import { Message, SMTPClient, } from 'emailjs';
 import { EMAIL_APP_PASSWORD } from "$env/static/private"
 import { emailTemplate } from "$lib/server/emailTemplate";
@@ -24,6 +24,12 @@ export async function POST({ request }) {
         let gouvAdress = await gouvAdressRes.json();
         if(gouvAdress.length == 0) return new Response(JSON.stringify({isErr:true, errMessage:`Adresse introuvable`}));
         gouvAdress = gouvAdress.features[0].properties.label;
+
+        for(const article of articles) {
+            let temp = `sizes.${article.size}`;
+            await productsRef.findOneAndUpdate({ name:article.name }, { $set:{ [temp]:article.sizes[article.size]-article.quantity } });
+        }
+
         await ordersRef.insertOne({ prenom, nom, adresse:gouvAdress, telephone, email, orderNo, date:new Date(), articles, promoCode, subtotal, total });
 
 

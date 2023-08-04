@@ -51,22 +51,22 @@ hr {
 }
 
 h1 {
-  @apply text-5xl font-sans font-semibold
-}
-h2 {
-  @apply text-4xl font-sans font-semibold
-}
-h3 {
-  @apply text-3xl font-sans font-semibold
-}
-h4 {
   @apply text-2xl font-sans font-semibold
 }
-h5 {
+h2 {
   @apply text-xl font-sans font-semibold
 }
-h6 {
+h3 {
   @apply text-lg font-sans font-semibold
+}
+h4 {
+  @apply text-base font-sans font-semibold
+}
+h5 {
+  @apply text-sm font-sans font-semibold
+}
+h6 {
+  @apply text-xs font-sans font-semibold
 }
 p {
   @apply block text-sm leading-4 font-semibold text-primary-500 font-['Mulish']

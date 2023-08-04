@@ -2,7 +2,7 @@
     import { Splide, SplideSlide } from '@splidejs/svelte-splide';
     import '@splidejs/svelte-splide/css';
     import { onMount } from 'svelte';
-    import { cart, cartAside } from "$lib/stores"
+    import { cart, cartAside, navbar } from "$lib/stores"
 
     export let data;
 

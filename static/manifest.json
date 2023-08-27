@@ -1,0 +1,27 @@
+{
+  "name": "Nude project",
+  "short_name": "Nude project",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "background_color": "#ede8df",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#452b1a",
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "The nude project home page",
+      "url": "/",
+      "icons": [{ "src": "/logo.png", "sizes": "512x512" }]
+    }
+  ],
+  "description": "Nude project shop"
+}

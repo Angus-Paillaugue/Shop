@@ -85,13 +85,13 @@
 </svelte:head>
 
 {#if disclaimerModal}
-    <div class="fixed top-0 left-0 w-full h-full z-50 bg-primary-500/50 flex flex-col justify-center items-center p-6">
-        <div class="p-6 flex bg-white dark:bg-gray-800 rounded-lg flex-col space-y-2 max-w-sm w-full">
+    <div class="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-full p-6 bg-primary-500/50">
+        <div class="flex flex-col w-full max-w-sm p-6 space-y-2 bg-white rounded-lg dark:bg-gray-800">
             <img src="/disclaimer.svg" alt="" class="w-1/2 mx-auto">
-            <p>This website is a replica of <a href="https://nude-project.com/" class="link uppercase">Nude project</a>.</p>
+            <p>This website is a replica of <a href="https://nude-project.com/" class="uppercase link">Nude project</a>.</p>
             <p>We did not create any products and we do not take credit on any of them.</p>
             <p>We do not ship any products.</p>
-            <div class="flex flex-row justify-center items-center">
+            <div class="flex flex-row items-center justify-center">
                 <button class="button-primary"
                     on:click={() => {
                         localStorage.setItem("disclaimerModal", true);
@@ -104,12 +104,12 @@
 {/if}
 
 {#if cookieModal}
-    <div class="fixed top-0 left-0 w-full h-full z-40 bg-primary-500/50 flex flex-col justify-end items-start p-6">
-        <div class="p-6 flex bg-white dark:bg-gray-800 rounded-lg flex-col space-y-4 max-w-sm w-full">
+    <div class="fixed top-0 left-0 z-40 flex flex-col items-start justify-end w-full h-full p-6 bg-primary-500/50">
+        <div class="flex flex-col w-full max-w-sm p-6 space-y-4 bg-white rounded-lg dark:bg-gray-800">
             <img src="https://www.svgrepo.com/show/30963/cookie.svg" class="w-1/3 mx-auto" alt="">
             <p>We use cookies to provide a better user experience.</p>
-            <div class="flex flex-row justify-between items-center">
-                <a href="/privacy-policy" class="link text-sm">Privacy Policy</a>
+            <div class="flex flex-row items-center justify-between">
+                <a href="/privacy-policy" class="text-sm link">Privacy Policy</a>
                 <button class="button-primary"
                     on:click={() => {
                         localStorage.setItem("acceptsCookies", true);
@@ -135,9 +135,9 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                 </svg>
             </div>
-            <input type="search" id="q" bind:value={query} name="q" class="block w-full p-4 pl-10 h-full text-sm text-gray-900 border border-gray-300 rounded-b-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" autocomplete="off" placeholder="Search posts or users" required bind:this={searchInput}>
+            <input type="search" id="q" bind:value={query} name="q" class="block w-full h-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-b-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" autocomplete="off" placeholder="Search posts or users" required bind:this={searchInput}>
 
-            <button type="submit" class="absolute top-0 right-0 rounded-br-lg button-primary h-full">Search</button>
+            <button type="submit" class="absolute top-0 right-0 h-full rounded-br-lg button-primary">Search</button>
         </div>
     </form>
 </div>
@@ -146,109 +146,109 @@
 <!-- Navbar -->
 
 <nav class="fixed top-0 left-0 w-full h-10 bg-white border-b border-primary-500 flex flex-row justify-between z-30 px-2 transition-all {$navbar ? "translate-y-0" : "-translate-y-full"} {$searchBar && $navbar ? "mt-[56px]" : ""}">
-    <button class="max-md:block hidden flex-1" on:click={() => {smallNavBar = !smallNavBar}}>
+    <button class="flex-1 hidden max-md:block" on:click={() => {smallNavBar = !smallNavBar}}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
         <div class="flex flex-col bg-white border-b border-border gap-6 absolute left-0 bottom-0 translate-y-full w-full {smallNavBar ? "flex" : "hidden"}">
-            <div class="w-full flex-row items-start px-8 pt-4 gap-6 flex">
-                <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start text-start">
-                    <p class="uppercase font-extrabold text-sm">Clothing</p>
-                    <a href="/category/clothing" class="link uppercase text-sm">All</a>
-                    <a href="/category/t-shirt" class="link uppercase text-sm">T-shirts</a>
-                    <a href="/category/hoodies&sweaters" class="link uppercase text-sm">Hoodies & sweaters</a>
-                    <a href="/category/bottoms" class="link uppercase text-sm">Bottoms</a>
-                    <a href="/category/swimwear" class="link uppercase text-sm">Swimwear</a>
-                    <a href="/category/knitwear" class="link uppercase text-sm">Knitwear</a>
-                    <a href="/category/shirts&polos" class="link uppercase text-sm">Shirts & Polos</a>
-                    <a href="/category/underwear" class="link uppercase text-sm">Underwear</a>
-                    <a href="/category/outerwear" class="link uppercase text-sm">Outerwear</a>
+            <div class="flex flex-row items-start w-full gap-6 px-8 pt-4">
+                <div class="flex flex-col items-start w-1/2 sm:w-1/4 xl:w-1/5 text-start">
+                    <p class="text-sm font-extrabold uppercase">Clothing</p>
+                    <a href="/category/clothing" class="text-sm uppercase link">All</a>
+                    <a href="/category/t-shirt" class="text-sm uppercase link">T-shirts</a>
+                    <a href="/category/hoodies&sweaters" class="text-sm uppercase link">Hoodies & sweaters</a>
+                    <a href="/category/bottoms" class="text-sm uppercase link">Bottoms</a>
+                    <a href="/category/swimwear" class="text-sm uppercase link">Swimwear</a>
+                    <a href="/category/knitwear" class="text-sm uppercase link">Knitwear</a>
+                    <a href="/category/shirts&polos" class="text-sm uppercase link">Shirts & Polos</a>
+                    <a href="/category/underwear" class="text-sm uppercase link">Underwear</a>
+                    <a href="/category/outerwear" class="text-sm uppercase link">Outerwear</a>
                 </div>
                 <div class="flex flex-col items-start text-start">
-                    <p class="uppercase font-extrabold text-sm">Accessories</p>
-                    <a href="/category/accessories" class="link uppercase text-sm">All</a>
-                    <a href="/category/headwear" class="link uppercase text-sm">Headwear</a>
-                    <a href="/category/jewelry" class="link uppercase text-sm">Jewelry</a>
-                    <a href="/category/objects" class="link uppercase text-sm">Objects</a>
-                    <a href="/category/socks" class="link uppercase text-sm">Socks</a>
-                    <a href="/category/bags" class="link uppercase text-sm">Bags</a>
+                    <p class="text-sm font-extrabold uppercase">Accessories</p>
+                    <a href="/category/accessories" class="text-sm uppercase link">All</a>
+                    <a href="/category/headwear" class="text-sm uppercase link">Headwear</a>
+                    <a href="/category/jewelry" class="text-sm uppercase link">Jewelry</a>
+                    <a href="/category/objects" class="text-sm uppercase link">Objects</a>
+                    <a href="/category/socks" class="text-sm uppercase link">Socks</a>
+                    <a href="/category/bags" class="text-sm uppercase link">Bags</a>
                 </div>
             </div>
-            <div class="flex-col flex items-start px-8 pb-4">
-                <p class="uppercase font-extrabold text-sm">Collections</p>
-                <div class="gap-6 w-full flex-row items-start flex text-start">
-                    <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
-                        <a href="/collections/SUN-KISSED" class="link uppercase text-sm">Sun-kissed</a>
-                        <a href="/collections/SUMMER TAPES" class="link uppercase text-sm">Summer tapes</a>
-                        <a href="/collections/SALAO" class="link uppercase text-sm">Salao</a>
-                        <a href="/collections/TRUENO X NUDE PROJECT" class="link uppercase text-sm">Trueno x nude project</a>
-                        <a href="/collections/CHAMPAGNE PROBLEMS" class="link uppercase text-sm">Champagne problems</a>
+            <div class="flex flex-col items-start px-8 pb-4">
+                <p class="text-sm font-extrabold uppercase">Collections</p>
+                <div class="flex flex-row items-start w-full gap-6 text-start">
+                    <div class="flex flex-col items-start w-1/2 sm:w-1/4 xl:w-1/5">
+                        <a href="/collections/SUN-KISSED" class="text-sm uppercase link">Sun-kissed</a>
+                        <a href="/collections/SUMMER TAPES" class="text-sm uppercase link">Summer tapes</a>
+                        <a href="/collections/SALAO" class="text-sm uppercase link">Salao</a>
+                        <a href="/collections/TRUENO X NUDE PROJECT" class="text-sm uppercase link">Trueno x nude project</a>
+                        <a href="/collections/CHAMPAGNE PROBLEMS" class="text-sm uppercase link">Champagne problems</a>
                     </div>
                     <div class="flex flex-col items-start text-start">
-                        <a href="/collections/SCOUTS" class="link uppercase text-sm">Scouts</a>
-                        <a href="/collections/DA'CAR" class="link uppercase text-sm">Da'car</a>
-                        <a href="/collections/HEAVER OR HELL" class="link uppercase text-sm">Heaven or hell</a>
-                        <a href="/collections/HEAD IN THE CLOUDS" class="link uppercase text-sm">Head in the clouds</a>
-                        <a href="/collections/TRENDSETTER COLLECTION" class="link uppercase text-sm">Trendsetter collection</a>
+                        <a href="/collections/SCOUTS" class="text-sm uppercase link">Scouts</a>
+                        <a href="/collections/DA'CAR" class="text-sm uppercase link">Da'car</a>
+                        <a href="/collections/HEAVER OR HELL" class="text-sm uppercase link">Heaven or hell</a>
+                        <a href="/collections/HEAD IN THE CLOUDS" class="text-sm uppercase link">Head in the clouds</a>
+                        <a href="/collections/TRENDSETTER COLLECTION" class="text-sm uppercase link">Trendsetter collection</a>
                     </div>
                 </div>
             </div>
-            <div class="flex-col flex items-start px-8 pb-4 space-y-4">
-                <a href="/about" class="uppercase font-extrabold text-sm text-start">About</a>
-                <a href="/stores" class="uppercase font-extrabold text-sm text-start">Stores</a>
+            <div class="flex flex-col items-start px-8 pb-4 space-y-4">
+                <a href="/about" class="text-sm font-extrabold uppercase text-start">About</a>
+                <a href="/stores" class="text-sm font-extrabold uppercase text-start">Stores</a>
             </div>
         </div>
     </button>
 
-    <div class="md:flex hidden flex-row gap-6 items-center flex-1">
+    <div class="flex-row items-center flex-1 hidden gap-6 md:flex">
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div on:mouseenter={(() => {categoriesDropdown = true})} on:mouseleave={() => {categoriesDropdown = false}} class="py-2.5 flex items-center">
-            <button class="uppercase text-xs font-semibold">Shop</button>
+            <button class="text-xs font-semibold uppercase">Shop</button>
             <div class="absolute left-0 bottom-0 translate-y-[calc(100%-10px)] bg-white border-b border-border gap-6 w-full flex-row items-start p-8 {categoriesDropdown ? "flex" : "hidden"}">
-                <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
-                    <p class="uppercase font-extrabold text-sm">Clothing</p>
-                    <a href="/category/clothing" class="link uppercase text-sm">All</a>
-                    <a href="/category/t-shirt" class="link uppercase text-sm">T-shirts</a>
-                    <a href="/category/hoodies&sweaters" class="link uppercase text-sm">Hoodies & sweaters</a>
-                    <a href="/category/bottoms" class="link uppercase text-sm">Bottoms</a>
-                    <a href="/category/swimwear" class="link uppercase text-sm">Swimwear</a>
-                    <a href="/category/knitwear" class="link uppercase text-sm">Knitwear</a>
-                    <a href="/category/shirts&polos" class="link uppercase text-sm">Shirts & Polos</a>
-                    <a href="/category/underwear" class="link uppercase text-sm">Underwear</a>
-                    <a href="/category/outerwear" class="link uppercase text-sm">Outerwear</a>
+                <div class="flex flex-col items-start w-1/2 sm:w-1/4 xl:w-1/5">
+                    <p class="text-sm font-extrabold uppercase">Clothing</p>
+                    <a href="/category/clothing" class="text-sm uppercase link">All</a>
+                    <a href="/category/t-shirt" class="text-sm uppercase link">T-shirts</a>
+                    <a href="/category/hoodies&sweaters" class="text-sm uppercase link">Hoodies & sweaters</a>
+                    <a href="/category/bottoms" class="text-sm uppercase link">Bottoms</a>
+                    <a href="/category/swimwear" class="text-sm uppercase link">Swimwear</a>
+                    <a href="/category/knitwear" class="text-sm uppercase link">Knitwear</a>
+                    <a href="/category/shirts&polos" class="text-sm uppercase link">Shirts & Polos</a>
+                    <a href="/category/underwear" class="text-sm uppercase link">Underwear</a>
+                    <a href="/category/outerwear" class="text-sm uppercase link">Outerwear</a>
                 </div>
                 <div class="flex flex-col items-start">
-                    <p class="uppercase font-extrabold text-sm">Accessories</p>
-                    <a href="/category/accessories" class="link uppercase text-sm">All</a>
-                    <a href="/category/headwear" class="link uppercase text-sm">Headwear</a>
-                    <a href="/category/jewelry" class="link uppercase text-sm">Jewelry</a>
-                    <a href="/category/objects" class="link uppercase text-sm">Objects</a>
-                    <a href="/category/socks" class="link uppercase text-sm">Socks</a>
-                    <a href="/category/bags" class="link uppercase text-sm">Bags</a>
+                    <p class="text-sm font-extrabold uppercase">Accessories</p>
+                    <a href="/category/accessories" class="text-sm uppercase link">All</a>
+                    <a href="/category/headwear" class="text-sm uppercase link">Headwear</a>
+                    <a href="/category/jewelry" class="text-sm uppercase link">Jewelry</a>
+                    <a href="/category/objects" class="text-sm uppercase link">Objects</a>
+                    <a href="/category/socks" class="text-sm uppercase link">Socks</a>
+                    <a href="/category/bags" class="text-sm uppercase link">Bags</a>
                 </div>
             </div>
         </div>
 
         <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div on:mouseenter={(() => {collectionsDropdown = true})} on:mouseleave={() => {collectionsDropdown = false}} class="py-2.5 flex items-center">
-            <button class="uppercase text-xs">Collections</button>
+            <button class="text-xs uppercase">Collections</button>
             <div class="absolute left-0 bottom-0 translate-y-[calc(100%-10px)] bg-white border-b border-border gap-6 w-full flex-row items-start p-8 {collectionsDropdown ? "flex" : "hidden"}">
-                <div class="flex flex-col sm:w-1/4 xl:w-1/5 w-1/2 items-start">
-                    <a href="/collections/SUN-KISSED" class="link uppercase text-sm">Sun-kissed</a>
-                    <a href="/collections/SUMMER TAPES" class="link uppercase text-sm">Summer tapes</a>
-                    <a href="/collections/SALAO" class="link uppercase text-sm">Salao</a>
-                    <a href="/collections/TRUENO X NUDE PROJECT" class="link uppercase text-sm">Trueno x nude project</a>
-                    <a href="/collections/CHAMPAGNE PROBLEMS" class="link uppercase text-sm">Champagne problems</a>
+                <div class="flex flex-col items-start w-1/2 sm:w-1/4 xl:w-1/5">
+                    <a href="/collections/SUN-KISSED" class="text-sm uppercase link">Sun-kissed</a>
+                    <a href="/collections/SUMMER TAPES" class="text-sm uppercase link">Summer tapes</a>
+                    <a href="/collections/SALAO" class="text-sm uppercase link">Salao</a>
+                    <a href="/collections/TRUENO X NUDE PROJECT" class="text-sm uppercase link">Trueno x nude project</a>
+                    <a href="/collections/CHAMPAGNE PROBLEMS" class="text-sm uppercase link">Champagne problems</a>
                 </div>
                 <div class="flex flex-col">
-                    <a href="/collections/SCOUTS" class="link uppercase text-sm">Scouts</a>
-                    <a href="/collections/DA'CAR" class="link uppercase text-sm">Da'car</a>
-                    <a href="/collections/HEAVER OR HELL" class="link uppercase text-sm">Heaven or hell</a>
-                    <a href="/collections/HEAD IN THE CLOUDS" class="link uppercase text-sm">Head in the clouds</a>
-                    <a href="/collections/TRENDSETTER COLLECTION" class="link uppercase text-sm">Trendsetter collection</a>
+                    <a href="/collections/SCOUTS" class="text-sm uppercase link">Scouts</a>
+                    <a href="/collections/DA'CAR" class="text-sm uppercase link">Da'car</a>
+                    <a href="/collections/HEAVER OR HELL" class="text-sm uppercase link">Heaven or hell</a>
+                    <a href="/collections/HEAD IN THE CLOUDS" class="text-sm uppercase link">Head in the clouds</a>
+                    <a href="/collections/TRENDSETTER COLLECTION" class="text-sm uppercase link">Trendsetter collection</a>
                 </div>
             </div>
         </div>
-        <a href="/about" class="uppercase text-xs">About</a>
-        <a href="/stores" class="uppercase text-xs">Stores</a>
+        <a href="/about" class="text-xs uppercase">About</a>
+        <a href="/stores" class="text-xs uppercase">Stores</a>
     </div>
     <a href="/" class="lg:p-2.5 p-3">
         <img src="/logo.svg" class="h-full" alt="">
@@ -259,7 +259,7 @@
         </button>
         <button on:click={() => {$cartAside = !$cartAside}} class="relative">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-full"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" /></svg>
-            <div class="bg-primary-500 rounded-full absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 p-1 text-white text-xs w-4 h-4 flex justify-center items-center">
+            <div class="absolute top-0 right-0 flex items-center justify-center w-4 h-4 p-1 text-xs text-white translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-500">
                 {$cart.reduce((partialSum, a) => partialSum + a.quantity, 0)}
             </div>
         </button>
@@ -278,12 +278,12 @@
             <div class="flex flex-col gap-2">
                 <div class="flex flex-row justify-between">
                     <button on:click={() =>{$cartAside = false}} class="group">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 group-hover:rotate-90 transition-all"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transition-all group-hover:rotate-90"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
-                    <p class="uppercase font-extrabold">Cart</p>
+                    <p class="font-extrabold uppercase">Cart</p>
                 </div>
                 {#each cartProducts as product}
-                    <div class="flex flex-row gap-4 h-44 border border-border w-full">
+                    <div class="flex flex-row w-full gap-4 border h-44 border-border">
                         <a href="/product/{product.id}" on:click={() =>{$cartAside = false}}>
                             <img src="{product.images[0]}" alt="" class="w-auto h-full">
                         </a>
@@ -301,9 +301,9 @@
                                 {/if}
                             </div>
                             <div class="flex flex-row gap-2">
-                                <button class="w-6 h-6 rounded-full flex justify-center items-center bg-primary-100" on:click={() => {quantityMinus(product)}}>-</button>
+                                <button class="flex items-center justify-center w-6 h-6 rounded-full bg-primary-100" on:click={() => {quantityMinus(product)}}>-</button>
                                 <span>{product.quantity}</span>
-                                <button class="w-6 h-6 rounded-full flex justify-center items-center bg-primary-100" on:click={() => {quantityPlus(product)}}>+</button>
+                                <button class="flex items-center justify-center w-6 h-6 rounded-full bg-primary-100" on:click={() => {quantityPlus(product)}}>+</button>
                             </div>
                         </div>
                     </div>
@@ -312,8 +312,8 @@
             <div class="flex flex-col gap-1 transition-all delay-150 {$cartAside ? "translate-y-0" : "translate-y-full"}">
                 <hr>
                 <div class="flex flex-row justify-between">
-                    <p class="uppercase text-xs">Cart</p>
-                    <p class="uppercase text-xs">Subtotal</p>
+                    <p class="text-xs uppercase">Cart</p>
+                    <p class="text-xs uppercase">Subtotal</p>
                 </div>
                 <div class="flex flex-row justify-between">
                     <p>{$cart.reduce((partialSum, a) => partialSum + a.quantity, 0)} item{$cart.reduce((partialSum, a) => partialSum + a.quantity, 0) > 1 ?"s" : ""}</p>
@@ -334,27 +334,27 @@
 <!-- Main -->
 
 <main class="transition-all flex flex-col {$searchBar ? "mt-[96px]" : $navbar ? "mt-10 min-h-[calc(100vh-40px)]" : " min-h-screen"}">
-    <section class="grow h-full flex flex-col">
+    <section class="flex flex-col h-full grow">
         <slot />
     </section>
 
     <!-- Footer -->
     
     <footer>
-        <div class="border-t border-primary-500 p-6 grid grid-cols-1 gap-6 lg:grid-cols-2 justify-evenly items-center">
-            <div class="flex flex-col items-center justify-center gap-2 w-2/3 mx-auto">
+        <div class="grid items-center grid-cols-1 gap-6 p-6 border-t border-primary-500 lg:grid-cols-2 justify-evenly">
+            <div class="flex flex-col items-center justify-center w-2/3 gap-2 mx-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.7" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
-                <p class="uppercase font-bold">EMBLEMATIC PACKAGING</p>
+                <p class="font-bold uppercase">EMBLEMATIC PACKAGING</p>
                 <span class="text-xs">Includes Close Friends access, stickers and many more.</span>
             </div>
             <div class="flex flex-col items-center justify-center w-2/3 mx-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.7" stroke="currentColor" class="w-16 h-16"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" /></svg>
-                <p class="uppercase font-bold">SECURE PAYMENT</p>
+                <p class="font-bold uppercase">SECURE PAYMENT</p>
                 <span class="text-xs">Paypal, Apple-Pay, Klarna, Bitcoin and all major credit and debit cards accepted.</span>
             </div>
         </div>
     
-        <div class="border-t border-primary-500 p-6 grid grid-cols-1 gap-6 lg:grid-cols-3 justify-evenly items-start">
+        <div class="grid items-start grid-cols-1 gap-6 p-6 border-t border-primary-500 lg:grid-cols-3 justify-evenly">
             <div class="space-y-6">
                 <a href="/"><img src="/logo.svg" class="h-4" alt="Logo"></a>
                 <div class="flex flex-row gap-4">
@@ -386,20 +386,20 @@
                 </div>
             </div>
             <div class="flex flex-col space-y-2">
-                <h6 class="uppercase font-extrabold">Boring stuff</h6>
-                <a href="/legal-notice" class="uppercase text-xs">Legal notice</a>
-                <a href="/privacy-policy" class="uppercase text-xs">Privacy policy</a>
+                <h6 class="font-extrabold uppercase">Boring stuff</h6>
+                <a href="/legal-notice" class="text-xs uppercase">Legal notice</a>
+                <a href="/privacy-policy" class="text-xs uppercase">Privacy policy</a>
             </div>
     
     
             <div class="flex flex-col space-y-2">
-                <h6 class="uppercase font-extrabold">Brand</h6>
-                <a href="/stores" class="link uppercase text-xs">Stores</a>
+                <h6 class="font-extrabold uppercase">Brand</h6>
+                <a href="/stores" class="text-xs uppercase link">Stores</a>
             </div>
         </div>
     
-        <div class="w-full p-2 bg-primary-500 text-center">
-            <a href="/" class="text-white text-xs">© NUDE PROJECT</a>
+        <div class="w-full p-2 text-center bg-primary-500">
+            <a href="/" class="text-xs text-white">© NUDE PROJECT</a>
         </div>
     </footer>
 </main>
